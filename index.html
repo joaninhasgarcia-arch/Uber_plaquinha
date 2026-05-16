@@ -1,533 +1,1433 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plaquinhas Uber & 99</title>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <title>Plaquinhas para Uber e 99</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
-    }:root{
-  --yellow:#ffd400;
-  --yellow-soft:#ffea70;
-  --bg:#030303;
-  --card:#0b0b0b;
-  --white:#f5f5f5;
-}
+    }
 
-body{
-  background:radial-gradient(circle at top,#161616 0%,#050505 45%,#000 100%);
-  color:var(--white);
-  font-family:'Montserrat',sans-serif;
-  overflow-x:hidden;
-  position:relative;
-}
+    :root{
+      --yellow:#ffc400;
+      --yellow-2:#ffdd35;
+      --yellow-3:#f4aa00;
+      --black:#030303;
+      --black-2:#090909;
+      --card:#0d0d0d;
+      --white:#ffffff;
+      --muted:#d9d9d9;
+      --line:rgba(255,196,0,.42);
+    }
 
-body::before{
-  content:'';
-  position:fixed;
-  width:500px;
-  height:500px;
-  background:rgba(255,212,0,0.08);
-  filter:blur(120px);
-  top:-120px;
-  left:-120px;
-  z-index:-1;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-body::after{
-  content:'';
-  position:fixed;
-  width:350px;
-  height:350px;
-  background:rgba(255,212,0,0.05);
-  filter:blur(100px);
-  bottom:-120px;
-  right:-120px;
-  z-index:-1;
-}
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 70% 8%, rgba(255,196,0,.20), transparent 24%),
+        radial-gradient(circle at 0% 35%, rgba(255,196,0,.10), transparent 22%),
+        linear-gradient(180deg,#050505 0%,#000 50%,#040404 100%);
+      color:var(--white);
+      font-family:'Montserrat', sans-serif;
+      overflow-x:hidden;
+    }
 
-.container{
-  width:100%;
-  max-width:480px;
-  margin:auto;
-  padding:22px;
-}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-3;
+      background-image:radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
+      background-size:18px 18px;
+      mask-image:linear-gradient(90deg,#000 0%,transparent 28%,transparent 72%,#000 100%);
+      opacity:.38;
+    }
 
-.hero{
-  padding-top:22px;
-  text-align:center;
-  position:relative;
-}
+    body::after{
+      content:"";
+      position:fixed;
+      right:-150px;
+      bottom:-170px;
+      width:560px;
+      height:560px;
+      border-radius:50%;
+      border:52px solid rgba(255,196,0,.90);
+      filter:blur(.2px) drop-shadow(0 0 32px rgba(255,196,0,.75));
+      z-index:-2;
+      opacity:.9;
+    }
 
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:linear-gradient(180deg,#ffe45f,#ffbf00);
-  color:#000;
-  padding:12px 22px;
-  border-radius:999px;
-  font-weight:900;
-  font-size:14px;
-  margin-bottom:28px;
-  letter-spacing:1px;
-  box-shadow:0 0 25px rgba(255,212,0,0.45);
-}
+    a{
+      color:inherit;
+    }
 
-h1{
-  font-family:'Anton',sans-serif;
-  font-size:78px;
-  line-height:0.9;
-  text-transform:uppercase;
-  color:var(--yellow);
-  letter-spacing:2px;
-  text-shadow:
-  0 0 10px rgba(255,212,0,0.95),
-  0 0 30px rgba(255,212,0,0.65),
-  0 0 70px rgba(255,212,0,0.25);
-}
+    .page{
+      width:100%;
+      max-width:980px;
+      margin:0 auto;
+      padding:24px 16px 54px;
+    }
 
-.subtitle{
-  margin-top:28px;
-  font-size:20px;
-  line-height:1.6;
-  color:#f1f1f1;
-  font-weight:600;
-}
+    .landing-frame{
+      width:100%;
+      max-width:760px;
+      margin:0 auto;
+      position:relative;
+      overflow:hidden;
+      border-radius:0 0 34px 34px;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0)),
+        rgba(0,0,0,.35);
+      box-shadow:0 0 80px rgba(0,0,0,.8);
+    }
 
-.hero-card{
-  margin-top:40px;
-  background:linear-gradient(180deg,#0e0e0e,#070707);
-  border:1px solid rgba(255,212,0,0.25);
-  border-radius:34px;
-  padding:20px;
-  box-shadow:
-  0 0 0 1px rgba(255,255,255,0.03),
-  0 0 35px rgba(255,212,0,0.12),
-  inset 0 0 25px rgba(255,255,255,0.02);
-  position:relative;
-  overflow:hidden;
-}
+    .landing-frame::before{
+      content:"";
+      position:absolute;
+      top:80px;
+      right:-130px;
+      width:520px;
+      height:330px;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.84),rgba(0,0,0,.30)),
+        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1400&auto=format&fit=crop') center/cover;
+      filter:blur(1px) saturate(.75);
+      opacity:.42;
+      transform:rotate(-4deg);
+      z-index:0;
+    }
 
-.hero-card::before{
-  content:'';
-  position:absolute;
-  inset:-120px;
-  background:radial-gradient(circle,rgba(255,212,0,0.12),transparent 60%);
-  opacity:0.8;
-}
+    .landing-frame::after{
+      content:"";
+      position:absolute;
+      left:-130px;
+      top:180px;
+      width:620px;
+      height:500px;
+      background:radial-gradient(circle,rgba(255,196,0,.12),transparent 60%);
+      filter:blur(18px);
+      z-index:0;
+    }
 
-.hero-card img{
-  width:100%;
-  border-radius:26px;
-  position:relative;
-  z-index:2;
-}
+    .hero,
+    .content-section,
+    .final-cta{
+      position:relative;
+      z-index:1;
+    }
 
-.price{
-  margin-top:28px;
-  font-size:18px;
-  color:#d7d7d7;
-  position:relative;
-  z-index:2;
-}
+    .hero{
+      padding:26px 22px 20px;
+      text-align:center;
+    }
 
-.price span{
-  font-size:62px;
-  color:var(--yellow);
-  font-weight:900;
-  text-shadow:0 0 25px rgba(255,212,0,0.35);
-}
+    .top-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+      margin-bottom:12px;
+    }
 
-.btn{
-  display:block;
-  width:100%;
-  margin-top:26px;
-  background:linear-gradient(180deg,#ffe45c,#ffc400);
-  color:#000;
-  text-decoration:none;
-  padding:24px;
-  border-radius:20px;
-  font-size:20px;
-  font-weight:900;
-  letter-spacing:0.5px;
-  box-shadow:
-  0 0 35px rgba(255,212,0,0.45),
-  inset 0 2px 0 rgba(255,255,255,0.5);
-  transition:0.3s;
-  position:relative;
-  z-index:2;
-}
+    .splash{
+      width:58px;
+      height:58px;
+      flex:0 0 auto;
+      position:relative;
+    }
 
-.btn:hover{
-  transform:translateY(-3px) scale(1.02);
-}
+    .splash span{
+      position:absolute;
+      display:block;
+      background:var(--yellow);
+      border-radius:999px;
+      box-shadow:0 0 18px rgba(255,196,0,.55);
+    }
 
-.section{
-  margin-top:90px;
-}
+    .splash span:nth-child(1){
+      width:12px;
+      height:56px;
+      left:25px;
+      top:1px;
+      transform:rotate(-36deg);
+    }
 
-.section-title{
-  font-family:'Anton',sans-serif;
-  font-size:48px;
-  line-height:0.95;
-  color:var(--yellow);
-  text-transform:uppercase;
-  margin-bottom:35px;
-  text-align:center;
-  letter-spacing:1px;
-  text-shadow:0 0 20px rgba(255,212,0,0.25);
-}
+    .splash span:nth-child(2){
+      width:14px;
+      height:42px;
+      left:5px;
+      top:18px;
+      transform:rotate(-72deg);
+    }
 
-.carousel{
-  display:flex;
-  gap:20px;
-  overflow-x:auto;
-  padding-bottom:10px;
-  scroll-snap-type:x mandatory;
-}
+    .splash span:nth-child(3){
+      width:13px;
+      height:34px;
+      left:41px;
+      top:23px;
+      transform:rotate(42deg);
+    }
 
-.carousel::-webkit-scrollbar{
-  display:none;
-}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transform:rotate(-2deg);
+      background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
+      color:#050505;
+      padding:11px 25px 10px;
+      border-radius:10px;
+      font-size:clamp(17px,4.8vw,36px);
+      font-weight:900;
+      letter-spacing:.8px;
+      line-height:1;
+      text-transform:uppercase;
+      box-shadow:0 8px 0 rgba(0,0,0,.35), 0 0 26px rgba(255,196,0,.35);
+    }
 
-.card{
-  min-width:270px;
-  background:linear-gradient(180deg,#101010,#060606);
-  border:1px solid rgba(255,212,0,0.18);
-  border-radius:34px;
-  padding:16px;
-  scroll-snap-align:center;
-  box-shadow:0 0 30px rgba(255,212,0,0.1);
-  position:relative;
-  overflow:hidden;
-}
+    .pin-icon{
+      width:78px;
+      height:78px;
+      flex:0 0 auto;
+      border:6px solid var(--yellow);
+      border-radius:50% 50% 50% 10px;
+      transform:rotate(-45deg);
+      position:relative;
+      filter:drop-shadow(0 0 20px rgba(255,196,0,.35));
+    }
 
-.card::before{
-  content:'';
-  position:absolute;
-  width:180px;
-  height:180px;
-  background:rgba(255,212,0,0.08);
-  border-radius:50%;
-  filter:blur(70px);
-  top:-50px;
-  right:-50px;
-}
+    .pin-icon::before{
+      content:"";
+      position:absolute;
+      width:36px;
+      height:19px;
+      border:5px solid var(--yellow);
+      border-radius:6px;
+      top:20px;
+      left:15px;
+      transform:rotate(45deg);
+    }
 
-.card img{
-  width:100%;
-  border-radius:22px;
-  position:relative;
-  z-index:2;
-}
+    .pin-icon::after{
+      content:"";
+      position:absolute;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--yellow);
+      box-shadow:31px 0 0 var(--yellow);
+      top:43px;
+      left:20px;
+      transform:rotate(45deg);
+    }
 
-.card h3{
-  margin-top:18px;
-  color:var(--yellow);
-  font-size:20px;
-  font-weight:900;
-  position:relative;
-  z-index:2;
-}
+    .headline{
+      margin-top:8px;
+      text-transform:uppercase;
+      font-family:'Anton', Impact, sans-serif;
+      font-size:clamp(86px,21vw,178px);
+      line-height:.78;
+      letter-spacing:2px;
+    }
 
-.benefits{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
+    .headline .white{
+      display:block;
+      color:#f7f7f7;
+      text-shadow:
+        0 6px 0 rgba(0,0,0,.65),
+        0 12px 18px rgba(0,0,0,.8),
+        0 0 2px #fff;
+    }
 
-.benefit-item{
-  background:linear-gradient(180deg,#0f0f0f,#070707);
-  border:1px solid rgba(255,212,0,0.15);
-  border-radius:28px;
-  padding:24px;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  box-shadow:0 0 20px rgba(255,212,0,0.06);
-}
+    .headline-row{
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      gap:16px;
+      margin-top:4px;
+    }
 
-.icon{
-  width:62px;
-  height:62px;
-  border-radius:18px;
-  background:rgba(255,212,0,0.12);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
-  color:var(--yellow);
-  flex-shrink:0;
-  box-shadow:0 0 20px rgba(255,212,0,0.15);
-}
+    .headline .small-white{
+      font-family:'Anton', Impact, sans-serif;
+      color:#f7f7f7;
+      font-size:clamp(66px,16vw,125px);
+      line-height:.78;
+      text-shadow:0 6px 0 rgba(0,0,0,.65), 0 12px 18px rgba(0,0,0,.8);
+    }
 
-.benefit-item p{
-  font-size:18px;
-  font-weight:800;
-  line-height:1.4;
-}
+    .headline .yellow{
+      color:var(--yellow);
+      font-size:clamp(96px,24vw,185px);
+      line-height:.78;
+      text-shadow:0 9px 0 rgba(0,0,0,.55), 0 0 24px rgba(255,196,0,.40);
+    }
 
-.women-section{
-  margin-top:90px;
-  background:linear-gradient(180deg,#ff1986,#ff52a8);
-  border-radius:38px;
-  padding:42px 28px;
-  text-align:center;
-  box-shadow:0 0 40px rgba(255,0,128,0.25);
-  position:relative;
-  overflow:hidden;
-}
+    .promise-box{
+      width:min(100%,640px);
+      margin:28px auto 0;
+      padding:18px 16px;
+      border:1.5px solid rgba(255,196,0,.60);
+      border-radius:18px;
+      background:rgba(0,0,0,.64);
+      box-shadow:inset 0 0 30px rgba(255,196,0,.04), 0 0 24px rgba(0,0,0,.40);
+      position:relative;
+    }
 
-.women-section::before{
-  content:'';
-  position:absolute;
-  width:240px;
-  height:240px;
-  background:rgba(255,255,255,0.15);
-  border-radius:50%;
-  filter:blur(80px);
-  top:-100px;
-  right:-100px;
-}
+    .promise-box::after{
+      content:"♡";
+      position:absolute;
+      right:18px;
+      top:50%;
+      transform:translateY(-50%) rotate(12deg);
+      color:var(--yellow);
+      font-size:47px;
+      font-weight:900;
+    }
 
-.women-section h2{
-  font-family:'Anton',sans-serif;
-  font-size:44px;
-  line-height:0.95;
-  margin-bottom:20px;
-  text-transform:uppercase;
-  position:relative;
-  z-index:2;
-}
+    .promise-box p{
+      max-width:520px;
+      margin:0 auto;
+      font-size:clamp(19px,4.7vw,31px);
+      font-weight:900;
+      text-transform:uppercase;
+      line-height:1.18;
+      letter-spacing:.3px;
+    }
 
-.women-section p{
-  font-size:18px;
-  line-height:1.7;
-  font-weight:600;
-  position:relative;
-  z-index:2;
-}
+    .promise-box strong{
+      color:var(--yellow);
+    }
 
-.testimonials{
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-}
+    .mini-benefits{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:15px;
+      margin:34px auto 0;
+      max-width:700px;
+    }
 
-.testimonial{
-  background:linear-gradient(180deg,#101010,#070707);
-  border-radius:28px;
-  padding:24px;
-  border:1px solid rgba(255,212,0,0.15);
-  box-shadow:0 0 20px rgba(255,212,0,0.06);
-}
+    .mini-item{
+      text-align:center;
+      min-width:0;
+    }
 
-.testimonial-header{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  margin-bottom:16px;
-}
+    .mini-icon{
+      width:64px;
+      height:64px;
+      margin:0 auto 12px;
+      border:3px solid var(--yellow);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--yellow);
+      font-size:29px;
+      font-weight:900;
+      background:rgba(0,0,0,.55);
+      box-shadow:0 0 20px rgba(255,196,0,.15);
+    }
 
-.avatar{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  background:linear-gradient(180deg,#ffe45c,#ffc400);
-  box-shadow:0 0 20px rgba(255,212,0,0.25);
-}
+    .mini-item p{
+      font-size:clamp(10px,2.5vw,15px);
+      font-weight:900;
+      text-transform:uppercase;
+      line-height:1.18;
+      color:#f5f5f5;
+      text-shadow:0 2px 0 #000;
+    }
 
-.testimonial h4{
-  font-size:19px;
-  font-weight:800;
-}
+    .cta-area{
+      margin:36px auto 0;
+      max-width:700px;
+      text-align:center;
+    }
 
-.testimonial span{
-  color:var(--yellow);
-  font-size:14px;
-  font-weight:800;
-}
+    .main-btn{
+      width:100%;
+      min-height:92px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:22px;
+      text-decoration:none;
+      color:#050505;
+      background:linear-gradient(180deg,#ffda27 0%,#ffc400 54%,#f2b100 100%);
+      border:2px solid rgba(255,255,255,.28);
+      border-radius:23px;
+      font-size:clamp(21px,5vw,33px);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.3px;
+      box-shadow:0 14px 0 rgba(0,0,0,.55), 0 0 34px rgba(255,196,0,.38), inset 0 2px 0 rgba(255,255,255,.55);
+      transition:.25s ease;
+    }
 
-.testimonial p{
-  line-height:1.7;
-  color:#ededed;
-  font-size:16px;
-}
+    .main-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 17px 0 rgba(0,0,0,.55), 0 0 48px rgba(255,196,0,.55), inset 0 2px 0 rgba(255,255,255,.55);
+    }
 
-.final-cta{
-  margin-top:90px;
-  text-align:center;
-  padding-bottom:70px;
-}
+    .main-btn .cart{
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      background:#050505;
+      color:var(--yellow);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+      font-size:34px;
+    }
 
-.final-cta h2{
-  font-family:'Anton',sans-serif;
-  font-size:56px;
-  line-height:0.95;
-  text-transform:uppercase;
-  color:var(--yellow);
-  margin-bottom:24px;
-  text-shadow:0 0 35px rgba(255,212,0,0.3);
-}
+    .main-btn .arrow{
+      font-size:42px;
+      line-height:1;
+    }
 
-.final-cta p{
-  font-size:18px;
-  line-height:1.7;
-  margin-bottom:30px;
-  color:#ededed;
-  font-weight:500;
-}
+    .ghost-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      margin-top:-4px;
+      transform:translateY(-2px);
+      min-height:62px;
+      padding:0 28px;
+      border-radius:12px;
+      border:1px solid rgba(255,196,0,.50);
+      background:#040404;
+      color:#fff;
+      text-decoration:none;
+      font-size:clamp(16px,4vw,25px);
+      font-weight:900;
+      text-transform:uppercase;
+      box-shadow:0 8px 18px rgba(0,0,0,.60);
+    }
 
-@media(max-width:480px){
-  h1{
-    font-size:66px;
-  }
+    .ghost-btn span{
+      color:var(--yellow);
+      font-size:28px;
+    }
 
-  .section-title{
-    font-size:42px;
-  }
+    .security-grid{
+      margin:42px auto 0;
+      max-width:700px;
+      border:1.5px solid rgba(255,196,0,.48);
+      border-radius:18px;
+      background:rgba(0,0,0,.58);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      overflow:hidden;
+      box-shadow:0 0 24px rgba(255,196,0,.06);
+    }
 
-  .final-cta h2{
-    font-size:48px;
-  }
-}
+    .security-item{
+      padding:22px 12px 20px;
+      text-align:center;
+      position:relative;
+    }
 
+    .security-item:not(:last-child)::after{
+      content:"";
+      position:absolute;
+      right:0;
+      top:24px;
+      bottom:24px;
+      width:1px;
+      background:rgba(255,196,0,.65);
+    }
+
+    .security-item .big-icon{
+      font-size:40px;
+      line-height:1;
+      color:var(--yellow);
+      margin-bottom:13px;
+      filter:drop-shadow(0 0 12px rgba(255,196,0,.25));
+    }
+
+    .security-item p{
+      font-size:clamp(12px,3vw,18px);
+      font-weight:900;
+      line-height:1.18;
+      text-transform:uppercase;
+    }
+
+    .social-proof{
+      margin:36px auto 20px;
+      max-width:630px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      text-align:center;
+      font-weight:800;
+      font-size:clamp(16px,4vw,25px);
+      color:#efefef;
+    }
+
+    .stars{
+      color:var(--yellow);
+      letter-spacing:4px;
+      font-size:clamp(26px,6vw,38px);
+      text-shadow:0 0 18px rgba(255,196,0,.32);
+    }
+
+    .social-proof strong{
+      color:var(--yellow);
+      font-weight:900;
+    }
+
+    .content-section{
+      padding:58px 22px 0;
+    }
+
+    .section-kicker{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 15px;
+      border-radius:999px;
+      background:rgba(255,196,0,.12);
+      border:1px solid rgba(255,196,0,.34);
+      color:var(--yellow);
+      font-size:13px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      margin-bottom:14px;
+    }
+
+    .section-title{
+      font-family:'Anton', Impact, sans-serif;
+      text-transform:uppercase;
+      font-size:clamp(42px,10vw,76px);
+      line-height:.92;
+      text-align:center;
+      color:#fff;
+      margin-bottom:14px;
+      text-shadow:0 6px 0 rgba(0,0,0,.58), 0 0 22px rgba(255,196,0,.12);
+    }
+
+    .section-title span{
+      color:var(--yellow);
+    }
+
+    .section-desc{
+      max-width:650px;
+      margin:0 auto 28px;
+      text-align:center;
+      color:#e7e7e7;
+      font-size:16px;
+      font-weight:600;
+      line-height:1.6;
+    }
+
+    .models-head{
+      text-align:center;
+    }
+
+    .carousel-wrap{
+      position:relative;
+      margin-top:22px;
+    }
+
+    .carousel{
+      display:flex;
+      gap:18px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      padding:5px 2px 20px;
+      scrollbar-width:none;
+    }
+
+    .carousel::-webkit-scrollbar{
+      display:none;
+    }
+
+    .model-card{
+      min-width:258px;
+      max-width:258px;
+      scroll-snap-align:center;
+      background:linear-gradient(180deg,#121212,#050505);
+      border:1.5px solid rgba(255,196,0,.33);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 0 28px rgba(255,196,0,.08), 0 14px 35px rgba(0,0,0,.45);
+      position:relative;
+    }
+
+    .model-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(130deg,rgba(255,255,255,.08),transparent 35%);
+    }
+
+    .model-card img{
+      width:100%;
+      height:315px;
+      object-fit:cover;
+      display:block;
+      filter:saturate(.98) contrast(1.05);
+    }
+
+    .model-card .model-info{
+      padding:17px 16px 20px;
+    }
+
+    .model-card h3{
+      color:var(--yellow);
+      font-size:21px;
+      font-weight:900;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+
+    .model-card p{
+      color:#e9e9e9;
+      font-size:14px;
+      line-height:1.45;
+      font-weight:600;
+    }
+
+    .hint{
+      text-align:center;
+      color:#bdbdbd;
+      font-size:13px;
+      font-weight:700;
+      margin-top:3px;
+    }
+
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      margin-top:26px;
+    }
+
+    .feature-card{
+      border:1.5px solid rgba(255,196,0,.30);
+      border-radius:24px;
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.01));
+      padding:23px 18px;
+      text-align:center;
+      box-shadow:0 0 22px rgba(255,196,0,.05);
+    }
+
+    .feature-card .feature-icon{
+      width:66px;
+      height:66px;
+      margin:0 auto 15px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--yellow);
+      color:#030303;
+      font-size:34px;
+      box-shadow:0 0 24px rgba(255,196,0,.36);
+    }
+
+    .feature-card h3{
+      font-size:18px;
+      font-weight:900;
+      line-height:1.2;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .feature-card p{
+      font-size:14px;
+      color:#dedede;
+      line-height:1.5;
+      font-weight:600;
+    }
+
+    .offer-box{
+      margin-top:28px;
+      border:1.5px solid rgba(255,196,0,.40);
+      border-radius:28px;
+      padding:26px 20px;
+      background:
+        radial-gradient(circle at top right,rgba(255,196,0,.16),transparent 38%),
+        linear-gradient(180deg,#111,#050505);
+      text-align:center;
+      box-shadow:0 0 42px rgba(255,196,0,.10);
+    }
+
+    .offer-box h3{
+      font-family:'Anton', Impact, sans-serif;
+      color:#fff;
+      font-size:clamp(36px,9vw,58px);
+      line-height:.95;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    .offer-box h3 span{
+      color:var(--yellow);
+    }
+
+    .offer-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      list-style:none;
+      margin:23px 0 0;
+      text-align:left;
+    }
+
+    .offer-list li{
+      background:rgba(0,0,0,.40);
+      border:1px solid rgba(255,196,0,.18);
+      border-radius:14px;
+      padding:12px;
+      font-size:14px;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    .offer-list li::before{
+      content:"✓";
+      color:var(--yellow);
+      margin-right:7px;
+      font-weight:900;
+    }
+
+    .testimonials{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+      margin-top:28px;
+    }
+
+    .testimonial{
+      background:linear-gradient(180deg,#111,#060606);
+      border:1.5px solid rgba(255,196,0,.28);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:0 0 22px rgba(255,196,0,.05);
+    }
+
+    .testimonial-top{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .avatar{
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      background:linear-gradient(180deg,var(--yellow-2),var(--yellow-3));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#070707;
+      font-size:25px;
+      font-weight:900;
+      box-shadow:0 0 22px rgba(255,196,0,.25);
+      flex:0 0 auto;
+    }
+
+    .testimonial h4{
+      font-size:18px;
+      font-weight:900;
+      margin-bottom:3px;
+    }
+
+    .testimonial span{
+      color:var(--yellow);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .testimonial p{
+      color:#efefef;
+      font-size:15px;
+      line-height:1.62;
+      font-weight:600;
+    }
+
+    .faq{
+      margin-top:28px;
+      display:grid;
+      gap:12px;
+    }
+
+    details{
+      border:1.5px solid rgba(255,196,0,.28);
+      border-radius:18px;
+      background:rgba(0,0,0,.50);
+      padding:17px 18px;
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      text-transform:uppercase;
+      color:#fff;
+      list-style:none;
+    }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    summary::after{
+      content:"+";
+      float:right;
+      color:var(--yellow);
+      font-size:23px;
+      line-height:17px;
+    }
+
+    details[open] summary::after{
+      content:"−";
+    }
+
+    details p{
+      margin-top:12px;
+      color:#dedede;
+      font-size:14px;
+      line-height:1.6;
+      font-weight:600;
+    }
+
+    .final-cta{
+      margin:62px 22px 30px;
+      padding:30px 20px 34px;
+      border-radius:30px;
+      border:1.5px solid rgba(255,196,0,.42);
+      text-align:center;
+      background:
+        radial-gradient(circle at 50% 0%,rgba(255,196,0,.18),transparent 45%),
+        linear-gradient(180deg,#121212,#030303);
+      box-shadow:0 0 45px rgba(255,196,0,.10);
+    }
+
+    .final-cta h2{
+      font-family:'Anton', Impact, sans-serif;
+      font-size:clamp(42px,10vw,78px);
+      line-height:.92;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+
+    .final-cta h2 span{
+      color:var(--yellow);
+    }
+
+    .final-cta p{
+      color:#e8e8e8;
+      font-size:16px;
+      font-weight:600;
+      line-height:1.6;
+      max-width:580px;
+      margin:0 auto 24px;
+    }
+
+    .footer-note{
+      margin-top:22px;
+      color:#bdbdbd;
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    @media(max-width:720px){
+      .page{
+        padding:0;
+      }
+
+      .landing-frame{
+        border-radius:0;
+      }
+
+      .pin-icon{
+        width:60px;
+        height:60px;
+        border-width:5px;
+      }
+
+      .pin-icon::before{
+        width:27px;
+        height:15px;
+        top:16px;
+        left:12px;
+        border-width:4px;
+      }
+
+      .pin-icon::after{
+        width:6px;
+        height:6px;
+        top:34px;
+        left:16px;
+        box-shadow:24px 0 0 var(--yellow);
+      }
+
+      .mini-benefits{
+        grid-template-columns:repeat(3,1fr);
+        row-gap:24px;
+      }
+
+      .security-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .security-item:nth-child(2)::after{
+        display:none;
+      }
+
+      .security-item:nth-child(1),
+      .security-item:nth-child(2){
+        border-bottom:1px solid rgba(255,196,0,.30);
+      }
+    }
+
+    @media(max-width:520px){
+      .hero{
+        padding:22px 14px 18px;
+      }
+
+      .top-row{
+        gap:8px;
+      }
+
+      .splash{
+        width:42px;
+        height:42px;
+      }
+
+      .splash span:nth-child(1){
+        width:9px;
+        height:43px;
+        left:18px;
+        top:0;
+      }
+
+      .splash span:nth-child(2){
+        width:10px;
+        height:32px;
+        left:2px;
+        top:13px;
+      }
+
+      .splash span:nth-child(3){
+        width:10px;
+        height:25px;
+        left:31px;
+        top:18px;
+      }
+
+      .badge{
+        padding:9px 15px 8px;
+        border-radius:8px;
+      }
+
+      .pin-icon{
+        display:none;
+      }
+
+      .promise-box{
+        padding:15px 38px 15px 14px;
+      }
+
+      .promise-box::after{
+        right:10px;
+        font-size:36px;
+      }
+
+      .mini-benefits{
+        gap:16px 8px;
+      }
+
+      .mini-icon{
+        width:54px;
+        height:54px;
+        font-size:24px;
+      }
+
+      .main-btn{
+        min-height:76px;
+        gap:10px;
+        border-radius:18px;
+      }
+
+      .main-btn .cart{
+        width:50px;
+        height:50px;
+        font-size:27px;
+      }
+
+      .main-btn .arrow{
+        display:none;
+      }
+
+      .ghost-btn{
+        width:82%;
+        padding:0 12px;
+        min-height:54px;
+      }
+
+      .security-item{
+        padding:18px 8px;
+      }
+
+      .content-section{
+        padding:52px 16px 0;
+      }
+
+      .features-grid,
+      .offer-list{
+        grid-template-columns:1fr;
+      }
+
+      .model-card{
+        min-width:235px;
+        max-width:235px;
+      }
+
+      .model-card img{
+        height:290px;
+      }
+
+      .final-cta{
+        margin:54px 14px 24px;
+      }
+    }
   </style>
 </head>
-<body>  <div class="container"><section class="hero">
-  <div class="badge">🔥 MAIS VENDIDO 2024</div>
 
-  <h1>Plaquinhas<br>Uber & 99</h1>
+<body>
+  <main class="page">
+    <div class="landing-frame">
 
-  <p class="subtitle">
-    +200 modelos premium editáveis no Canva para deixar seu carro mais profissional e aumentar suas avaliações.
-  </p>
+      <section class="hero" id="topo">
 
-  <div class="hero-card">
-    <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200&auto=format&fit=crop" alt="Plaquinhas">
+        <div class="top-row">
+          <div class="splash" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
 
-    <div class="price">
-      Apenas <br>
-      <span>R$9,90</span>
-    </div>
+          <div class="badge">
+            Plaquinhas para
+          </div>
 
-    <a href="#" class="btn">QUERO MINHAS PLAQUINHAS</a>
-  </div>
-</section>
-
-<section class="section">
-  <h2 class="section-title">Modelos Exclusivos</h2>
-
-  <div class="carousel">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?q=80&w=1200&auto=format&fit=crop" alt="Modelo">
-      <h3>Modelo Premium</h3>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop" alt="Modelo">
-      <h3>Modelo Feminino</h3>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1200&auto=format&fit=crop" alt="Modelo">
-      <h3>Modelo Avaliação</h3>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <h2 class="section-title">O Que Você Recebe</h2>
-
-  <div class="benefits">
-
-    <div class="benefit-item">
-      <div class="icon">🎨</div>
-      <p>100% editável no Canva</p>
-    </div>
-
-    <div class="benefit-item">
-      <div class="icon">⚡</div>
-      <p>Acesso imediato após pagamento</p>
-    </div>
-
-    <div class="benefit-item">
-      <div class="icon">🛡️</div>
-      <p>Garantia total de 7 dias</p>
-    </div>
-
-    <div class="benefit-item">
-      <div class="icon">⭐</div>
-      <p>Modelos premium profissionais</p>
-    </div>
-
-    <div class="benefit-item">
-      <div class="icon">💎</div>
-      <p>Atualizações gratuitas</p>
-    </div>
-
-  </div>
-</section>
-
-<section class="women-section">
-  <h2>Versão Feminina</h2>
-
-  <p>
-    Plaquinhas especiais para passageiras mulheres, transmitindo mais segurança, cuidado e profissionalismo durante a viagem.
-  </p>
-</section>
-
-<section class="section">
-  <h2 class="section-title">Quem Comprou Aprovou</h2>
-
-  <div class="testimonials">
-
-    <div class="testimonial">
-      <div class="testimonial-header">
-        <div class="avatar"></div>
-        <div>
-          <h4>Marcos Silva</h4>
-          <span>Motorista Uber ⭐⭐⭐⭐⭐</span>
+          <div class="pin-icon" aria-hidden="true"></div>
         </div>
-      </div>
 
-      <p>
-        “Minhas avaliações melhoraram muito depois que comecei a usar as plaquinhas. Ficou extremamente profissional.”
-      </p>
-    </div>
+        <h1 class="headline">
+          <span class="white">Uber</span>
 
-    <div class="testimonial">
-      <div class="testimonial-header">
-        <div class="avatar"></div>
-        <div>
-          <h4>Juliana Costa</h4>
-          <span>Motorista 99 ⭐⭐⭐⭐⭐</span>
+          <span class="headline-row">
+            <span class="small-white">e</span>
+            <span class="yellow">99</span>
+          </span>
+        </h1>
+
+        <div class="promise-box">
+          <p>
+            Mais organização, segurança e <strong>respeito</strong> no seu carro!
+          </p>
         </div>
-      </div>
 
-      <p>
-        “Os modelos femininos ficaram incríveis. Os passageiros elogiam bastante durante as viagens.”
-      </p>
+        <div class="mini-benefits" aria-label="Benefícios principais">
+
+          <div class="mini-item">
+            <div class="mini-icon">✎</div>
+            <p>Editável<br>no Canva</p>
+          </div>
+
+          <div class="mini-item">
+            <div class="mini-icon">⚡</div>
+            <p>Entrega<br>imediata</p>
+          </div>
+
+          <div class="mini-item">
+            <div class="mini-icon">🛡</div>
+            <p>Garantia<br>de 7 dias</p>
+          </div>
+
+          <div class="mini-item">
+            <div class="mini-icon">🏅</div>
+            <p>Arquivos em<br>alta qualidade</p>
+          </div>
+
+          <div class="mini-item">
+            <div class="mini-icon">⚙</div>
+            <p>100%<br>personalizável</p>
+          </div>
+
+          <div class="mini-item">
+            <div class="mini-icon">🚘</div>
+            <p>Ideal para<br>Uber e 99</p>
+          </div>
+
+        </div>
+
+        <div class="cta-area">
+
+          <!-- TROQUE O LINK ABAIXO PELO LINK DO SEU CHECKOUT OU WHATSAPP -->
+          <a class="main-btn" href="#comprar">
+            <span class="cart">🛒</span>
+            Quero minhas plaquinhas
+            <span class="arrow">›</span>
+          </a>
+
+          <a class="ghost-btn" href="#modelos">
+            <span>👁</span>
+            Ver modelos de plaquinhas
+          </a>
+
+        </div>
+
+        <div class="security-grid" aria-label="Segurança e suporte">
+
+          <div class="security-item">
+            <div class="big-icon">🛡</div>
+            <p>Pagamento<br>seguro</p>
+          </div>
+
+          <div class="security-item">
+            <div class="big-icon">🔒</div>
+            <p>Acesso<br>imediato</p>
+          </div>
+
+          <div class="security-item">
+            <div class="big-icon">👍</div>
+            <p>Satisfação<br>garantida</p>
+          </div>
+
+          <div class="security-item">
+            <div class="big-icon">🎧</div>
+            <p>Suporte<br>especializado</p>
+          </div>
+
+        </div>
+
+        <div class="social-proof">
+          <div class="stars">★★★★★</div>
+
+          <div>
+            Mais de <strong>5.000 motoristas</strong><br>
+            já utilizam nossas plaquinhas!
+          </div>
+        </div>
+
+      </section>
+
+      <section class="content-section" id="modelos">
+
+        <div class="models-head">
+          <div class="section-kicker">Modelos prontos para editar</div>
+
+          <h2 class="section-title">
+            Veja alguns <span>modelos</span>
+          </h2>
+
+          <p class="section-desc">
+            Abaixo fica o carrossel para você trocar pelas imagens das suas plaquinhas no GitHub.
+            Basta substituir os links dentro do atributo <strong>src</strong> das imagens.
+          </p>
+        </div>
+
+        <div class="carousel-wrap">
+          <div class="carousel">
+
+            <article class="model-card">
+              <!-- SUBSTITUA ESTE SRC PELO LINK DA SUA IMAGEM NO GITHUB -->
+              <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=900&auto=format&fit=crop" alt="Modelo de plaquinha para motorista de aplicativo">
+
+              <div class="model-info">
+                <h3>Modelo boas-vindas</h3>
+                <p>Ideal para recepcionar passageiros com uma mensagem profissional.</p>
+              </div>
+            </article>
+
+            <article class="model-card">
+              <!-- SUBSTITUA ESTE SRC PELO LINK DA SUA IMAGEM NO GITHUB -->
+              <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?q=80&w=900&auto=format&fit=crop" alt="Modelo de plaquinha personalizada para Uber e 99">
+
+              <div class="model-info">
+                <h3>Modelo avaliação</h3>
+                <p>Perfeito para incentivar boas avaliações de forma educada.</p>
+              </div>
+            </article>
+
+            <article class="model-card">
+              <!-- SUBSTITUA ESTE SRC PELO LINK DA SUA IMAGEM NO GITHUB -->
+              <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=900&auto=format&fit=crop" alt="Modelo de plaquinha premium para carro">
+
+              <div class="model-info">
+                <h3>Modelo segurança</h3>
+                <p>Ajuda a comunicar regras, cuidado e respeito durante a corrida.</p>
+              </div>
+            </article>
+
+            <article class="model-card">
+              <!-- SUBSTITUA ESTE SRC PELO LINK DA SUA IMAGEM NO GITHUB -->
+              <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=900&auto=format&fit=crop" alt="Plaquinha editável no Canva para motorista">
+
+              <div class="model-info">
+                <h3>Modelo personalizado</h3>
+                <p>Edite nome, cores, frases e detalhes diretamente pelo Canva.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <p class="hint">
+          Arraste para o lado para ver mais modelos →
+        </p>
+
+      </section>
+
+      <section class="content-section" id="beneficios">
+
+        <div class="models-head">
+          <div class="section-kicker">O que você recebe</div>
+
+          <h2 class="section-title">
+            Produto <span>digital</span> completo
+          </h2>
+
+          <p class="section-desc">
+            Você recebe acesso aos arquivos para editar, personalizar e imprimir suas plaquinhas quando quiser.
+          </p>
+        </div>
+
+        <div class="features-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">🎨</div>
+
+            <h3>Editável no Canva</h3>
+
+            <p>
+              Altere textos, cores, nome do motorista e detalhes sem precisar instalar programas.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+
+            <h3>Acesso imediato</h3>
+
+            <p>
+              Após a compra, você recebe o acesso aos modelos para começar a editar na hora.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🛡</div>
+
+            <h3>Garantia de 7 dias</h3>
+
+            <p>
+              Você tem 7 dias de garantia para comprar com mais segurança e tranquilidade.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⚙</div>
+
+            <h3>100% personalizável</h3>
+
+            <p>
+              Use os modelos como estão ou personalize para deixar com a identidade do seu carro.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="offer-box" id="comprar">
+
+          <h3>
+            Plaquinhas para <span>Uber e 99</span>
+          </h3>
+
+          <p class="section-desc" style="margin-bottom:0;">
+            Uma solução simples para deixar o carro mais organizado, profissional e preparado para atender melhor seus passageiros.
+          </p>
+
+          <ul class="offer-list">
+            <li>Modelos editáveis no Canva</li>
+            <li>Arquivos em alta qualidade</li>
+            <li>Acesso imediato ao material</li>
+            <li>Ideal para motoristas de aplicativo</li>
+            <li>Garantia de 7 dias</li>
+            <li>Suporte para acesso aos arquivos</li>
+          </ul>
+
+          <!-- TROQUE O LINK ABAIXO PELO LINK DO SEU CHECKOUT OU WHATSAPP -->
+          <a class="main-btn" style="margin-top:24px;" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20quero%20minhas%20plaquinhas%20para%20Uber%20e%2099">
+            <span class="cart">🛒</span>
+            Comprar agora
+            <span class="arrow">›</span>
+          </a>
+
+        </div>
+
+      </section>
+
+      <section class="content-section" id="depoimentos">
+
+        <div class="models-head">
+          <div class="section-kicker">Quem comprou aprovou</div>
+
+          <h2 class="section-title">
+            Comentários de <span>motoristas</span>
+          </h2>
+
+          <p class="section-desc">
+            Use esta área para colocar comentários reais de clientes que adquiriram suas plaquinhas.
+          </p>
+        </div>
+
+        <div class="testimonials">
+
+          <article class="testimonial">
+            <div class="testimonial-top">
+              <div class="avatar">M</div>
+
+              <div>
+                <h4>Marcos Silva</h4>
+                <span>Motorista Uber ★★★★★</span>
+              </div>
+            </div>
+
+            <p>
+              “As plaquinhas deixaram meu carro com aparência mais profissional. Os passageiros elogiaram bastante.”
+            </p>
+          </article>
+
+          <article class="testimonial">
+            <div class="testimonial-top">
+              <div class="avatar">J</div>
+
+              <div>
+                <h4>Juliana Costa</h4>
+                <span>Motorista 99 ★★★★★</span>
+              </div>
+            </div>
+
+            <p>
+              “Consegui editar tudo pelo Canva rapidinho. Ficou bonito, organizado e do jeito que eu queria.”
+            </p>
+          </article>
+
+          <article class="testimonial">
+            <div class="testimonial-top">
+              <div class="avatar">R</div>
+
+              <div>
+                <h4>Rafael Almeida</h4>
+                <span>Motorista de aplicativo ★★★★★</span>
+              </div>
+            </div>
+
+            <p>
+              “O acesso chegou na hora. Imprimi os modelos e já comecei a usar no carro no mesmo dia.”
+            </p>
+          </article>
+
+        </div>
+
+      </section>
+
+      <section class="content-section" id="duvidas">
+
+        <div class="models-head">
+          <div class="section-kicker">Dúvidas frequentes</div>
+
+          <h2 class="section-title">
+            Perguntas <span>rápidas</span>
+          </h2>
+        </div>
+
+        <div class="faq">
+
+          <details open>
+            <summary>Preciso saber mexer em design?</summary>
+
+            <p>
+              Não. Os modelos são editáveis no Canva, então você pode alterar textos e detalhes de forma simples.
+            </p>
+          </details>
+
+          <details>
+            <summary>O acesso é enviado na hora?</summary>
+
+            <p>
+              Sim. A proposta da página é vender um produto digital com acesso imediato após a compra.
+            </p>
+          </details>
+
+          <details>
+            <summary>Posso imprimir as plaquinhas?</summary>
+
+            <p>
+              Sim. Você pode baixar os arquivos em alta qualidade e imprimir conforme o tamanho desejado.
+            </p>
+          </details>
+
+          <details>
+            <summary>Tem garantia?</summary>
+
+            <p>
+              Sim. A página destaca garantia de 7 dias para deixar a compra mais segura.
+            </p>
+          </details>
+
+        </div>
+
+      </section>
+
+      <section class="final-cta">
+
+        <h2>
+          Deixe seu carro mais <span>profissional</span>
+        </h2>
+
+        <p>
+          Tenha plaquinhas bonitas, organizadas e personalizáveis para melhorar a experiência dos passageiros no seu Uber ou 99.
+        </p>
+
+        <!-- TROQUE O LINK ABAIXO PELO LINK DO SEU CHECKOUT OU WHATSAPP -->
+        <a class="main-btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20quero%20comprar%20as%20plaquinhas%20para%20Uber%20e%2099">
+          <span class="cart">🛒</span>
+          Quero acesso imediato
+          <span class="arrow">›</span>
+        </a>
+
+        <p class="footer-note">
+          Produto digital. Substitua os links dos botões pelo seu checkout, WhatsApp ou plataforma de pagamento.
+        </p>
+
+      </section>
+
     </div>
-
-  </div>
-</section>
-
-<section class="final-cta">
-  <h2>Seu carro merece destaque</h2>
-
-  <p>
-    Transforme seu carro em um ambiente mais profissional, organizado e moderno com modelos exclusivos editáveis no Canva.
-  </p>
-
-  <a href="#" class="btn">QUERO ACESSO IMEDIATO</a>
-</section>
-
-  </div></body>
-</html>
+  </main>
+</body>
+          </html>
